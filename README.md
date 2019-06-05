@@ -1,6 +1,6 @@
 <p align=center><img src=https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/198/balloon_1f388.png width=120px></p>
 <h1 align=center>redis (container image)</h1>
-<p align=center>Built-from-source container image of the <a href=https://redis.io>Redis data structure store</a></p>
+<p align=center>Built-from-source container image of the <a href=https://redis.io>Redis in-memory data structure store</a></p>
 
 
 ## Tags
