@@ -12,6 +12,10 @@ RUN cd /tmp && \
 
 RUN apk add gcc make musl-dev linux-headers && \
     cd /tmp/redis && \
+      # see https://github.com/docker-library/redis/blob/6845f6d4940f94c50a9f1bf16e07058d0fe4bc4f/5.0/Dockerfile#L59
+      grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 1$' src/server.h; \
+      sed -ri 's!^(#define CONFIG_DEFAULT_PROTECTED_MODE) 1$!\1 0!' src/server.h; \
+      grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 0$' src/server.h; \
       make
 
 
