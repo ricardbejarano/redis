@@ -32,5 +32,4 @@ COPY rootfs /
 WORKDIR /data
 VOLUME ["/data"]
 EXPOSE 6379/tcp
-STOPSIGNAL SIGTERM
 ENTRYPOINT ["/redis-server"]
