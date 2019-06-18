@@ -31,9 +31,6 @@ COPY --from=build /lib/x86_64-linux-gnu/libc.so.6 \
                   /lib/x86_64-linux-gnu/libpthread.so.0 \
                   /lib/x86_64-linux-gnu/
 COPY --from=build /lib64/ld-linux-x86-64.so.2 /lib64/
-COPY --from=build /tmp/redis/redis.conf \
-                  /tmp/redis/sentinel.conf \
-                  /etc/redis/
 COPY --from=build /tmp/redis/src/redis-server /
 
 COPY rootfs /

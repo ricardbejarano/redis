@@ -121,10 +121,7 @@ Based on the [glibc](https://www.gnu.org/software/libc/) implementation of `libc
 ├── data/
 ├── etc/
 │   ├── group
-│   ├── passwd
-│   └── redis/
-│       ├── redis.conf
-│       └── sentinel.conf
+│   └── passwd
 ├── lib/
 │   └── x86_64-linux-gnu/
 │       ├── libc.so.6
@@ -146,10 +143,7 @@ Based on the [musl](https://www.musl-libc.org/) implementation of `libc`. Dynami
 ├── data/
 ├── etc/
 │   ├── group
-│   ├── passwd
-│   └── redis/
-│       ├── redis.conf
-│       └── sentinel.conf
+│   └── passwd
 ├── lib/
 │   └── ld-musl-x86_64.so.1
 └── redis-server

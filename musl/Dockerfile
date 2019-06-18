@@ -22,9 +22,6 @@ RUN apk add gcc make musl-dev linux-headers && \
 FROM scratch
 
 COPY --from=build /lib/ld-musl-x86_64.so.1 /lib/
-COPY --from=build /tmp/redis/redis.conf \
-                  /tmp/redis/sentinel.conf \
-                  /etc/redis/
 COPY --from=build /tmp/redis/src/redis-server /
 
 COPY rootfs /
