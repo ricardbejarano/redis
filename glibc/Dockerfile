@@ -32,8 +32,9 @@ COPY --from=build /lib/x86_64-linux-gnu/libc.so.6 \
 COPY --from=build /lib64/ld-linux-x86-64.so.2 /lib64/
 COPY --from=build /tmp/redis/src/redis-server /
 
-COPY rootfs /
+COPY --chown=100:100 rootfs /
 
+USER redis:redis
 WORKDIR /data
 VOLUME ["/data"]
 EXPOSE 6379/tcp

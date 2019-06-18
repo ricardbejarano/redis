@@ -23,8 +23,9 @@ FROM scratch
 COPY --from=build /lib/ld-musl-x86_64.so.1 /lib/
 COPY --from=build /tmp/redis/src/redis-server /
 
-COPY rootfs /
+COPY --chown=100:100 rootfs /
 
+USER redis:redis
 WORKDIR /data
 VOLUME ["/data"]
 EXPOSE 6379/tcp
