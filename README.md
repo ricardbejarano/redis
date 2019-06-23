@@ -9,15 +9,15 @@
 
 Available on [Docker Hub](https://hub.docker.com) as [`ricardbejarano/redis`](https://hub.docker.com/r/ricardbejarano/redis):
 
-- [`5.0.5-glibc`, `5.0.5`, `glibc`, `master`, `latest` *(glibc/Dockerfile)*](https://github.com/ricardbejarano/redis/blob/master/glibc/Dockerfile)
-- [`5.0.5-musl`, `musl` *(musl/Dockerfile)*](https://github.com/ricardbejarano/redis/blob/master/musl/Dockerfile)
+- [`5.0.5-glibc`, `5.0.5`, `glibc`, `master`, `latest` *(Dockerfile.glibc)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.glibc)
+- [`5.0.5-musl`, `musl` *(Dockerfile.musl)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.musl)
 
 ### Quay
 
 Available on [Quay](https://quay.io) as:
 
-- [`quay.io/ricardbejarano/redis-glibc`](https://quay.io/repository/ricardbejarano/redis-glibc), tags: [`5.0.5`, `master`, `latest` *(glibc/Dockerfile)*](https://github.com/ricardbejarano/redis/blob/master/glibc/Dockerfile)
-- [`quay.io/ricardbejarano/redis-musl`](https://quay.io/repository/ricardbejarano/redis-musl), tags: [`5.0.5`, `master`, `latest` *(musl/Dockerfile)*](https://github.com/ricardbejarano/redis/blob/master/musl/Dockerfile)
+- [`quay.io/ricardbejarano/redis-glibc`](https://quay.io/repository/ricardbejarano/redis-glibc), tags: [`5.0.5`, `master`, `latest` *(Dockerfile.glibc)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.glibc)
+- [`quay.io/ricardbejarano/redis-musl`](https://quay.io/repository/ricardbejarano/redis-musl), tags: [`5.0.5`, `master`, `latest` *(Dockerfile.musl)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.musl)
 
 
 ## Features
