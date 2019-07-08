@@ -34,7 +34,7 @@ COPY --from=build /tmp/redis/src/redis-server /
 
 COPY --chown=100:100 rootfs /
 
-USER redis:redis
+USER 100:100
 WORKDIR /data
 VOLUME ["/data"]
 EXPOSE 6379/tcp
