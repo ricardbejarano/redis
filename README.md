@@ -1,6 +1,6 @@
-<p align=center><img src=https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/198/balloon_1f388.png width=120px></p>
-<h1 align=center>redis (container image)</h1>
-<p align=center>Built-from-source container image of the <a href=https://redis.io>Redis in-memory data structure store</a></p>
+<p align="center"><img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/198/balloon_1f388.png" width="120px"></p>
+<h1 align="center">redis (container image)</h1>
+<p align="center">Built-from-source container image of the <a href="https://redis.io">Redis in-memory data structure store</a></p>
 
 
 ## Tags
@@ -22,19 +22,19 @@ Available on [Quay](https://quay.io) as:
 
 ## Features
 
-* Super tiny (`glibc`-based is `~11.9MB` and `musl`-based is `~10.8MB`)
-* Compiled from source during build time
-* Built `FROM scratch`, see [Filesystem](#filesystem) for an exhaustive list of the image's contents
+* Super tiny (`glibc`-based image is about `14.5MB`, `musl`-based image is about `10.7MB`)
+* Compiled from source (with binary exploit mitigations) during build time
+* Built `FROM scratch`, with zero bloat (see [Filesystem](#filesystem))
 * Reduced attack surface (no shell, no UNIX tools, no package manager...)
-* Built with binary exploit mitigations enabled
+* Runs as unprivileged (non-`root`) user
 
 
 ## Configuration
 
 ### Volumes
 
-- Bind your **data** at `/data`.
-- Bind your **configuration** at `/etc/redis/redis.conf` and/or `/etc/redis/sentinel.conf`.
+- Mount your **data** at `/data`.
+- Mount your **configuration** at `/etc/redis/redis.conf` and/or `/etc/redis/sentinel.conf`.
 
 
 ## Building
@@ -44,8 +44,6 @@ Available on [Quay](https://quay.io) as:
 
 
 ## Filesystem
-
-The images' contents are:
 
 ### `glibc`
 

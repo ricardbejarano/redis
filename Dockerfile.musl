@@ -15,15 +15,20 @@ RUN apk add gcc make musl-dev linux-headers && \
       grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 1$' src/server.h; \
       sed -ri 's!^(#define CONFIG_DEFAULT_PROTECTED_MODE) 1$!\1 0!' src/server.h; \
       grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 0$' src/server.h; \
-      make
+      make && \
+    echo "nogroup:*:100:nobody" > /tmp/group && \
+    echo "nobody:*:100:100:::" > /tmp/passwd && \
+    mkdir -p /tmp/data
 
 
 FROM scratch
 
-COPY --from=build /lib/ld-musl-x86_64.so.1 /lib/
-COPY --from=build /tmp/redis/src/redis-server /
-
-COPY --chown=100:100 rootfs /
+COPY --from=build --chown=100:100 /tmp/redis/src/redis-server /
+COPY --from=build --chown=100:100 /tmp/data /data
+COPY --from=build --chown=100:100 /lib/ld-musl-x86_64.so.1 /lib/
+COPY --from=build --chown=100:100 /tmp/group \
+                                  /tmp/passwd \
+                                  /etc/
 
 USER 100:100
 WORKDIR /data

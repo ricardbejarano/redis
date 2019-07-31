@@ -18,21 +18,26 @@ RUN apt update && \
       grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 0$' src/server.h; \
       make \
         CFLAGS="-fstack-protector-all" \
-        LDFLAGS="-z relro -z now"
+        LDFLAGS="-z relro -z now" && \
+    echo "nogroup:*:100:nobody" > /tmp/group && \
+    echo "nobody:*:100:100:::" > /tmp/passwd && \
+    mkdir -p /tmp/data
 
 
 FROM scratch
 
-COPY --from=build /lib/x86_64-linux-gnu/libc.so.6 \
-                  /lib/x86_64-linux-gnu/libdl.so.2 \
-                  /lib/x86_64-linux-gnu/libm.so.6 \
-                  /lib/x86_64-linux-gnu/librt.so.1 \
-                  /lib/x86_64-linux-gnu/libpthread.so.0 \
-                  /lib/x86_64-linux-gnu/
-COPY --from=build /lib64/ld-linux-x86-64.so.2 /lib64/
-COPY --from=build /tmp/redis/src/redis-server /
-
-COPY --chown=100:100 rootfs /
+COPY --from=build --chown=100:100 /tmp/redis/src/redis-server /
+COPY --from=build --chown=100:100 /tmp/data /data
+COPY --from=build --chown=100:100 /lib/x86_64-linux-gnu/libc.so.6 \
+                                  /lib/x86_64-linux-gnu/libdl.so.2 \
+                                  /lib/x86_64-linux-gnu/libm.so.6 \
+                                  /lib/x86_64-linux-gnu/librt.so.1 \
+                                  /lib/x86_64-linux-gnu/libpthread.so.0 \
+                                  /lib/x86_64-linux-gnu/
+COPY --from=build --chown=100:100 /lib64/ld-linux-x86-64.so.2 /lib64/
+COPY --from=build --chown=100:100 /tmp/group \
+                                  /tmp/passwd \
+                                  /etc/
 
 USER 100:100
 WORKDIR /data
