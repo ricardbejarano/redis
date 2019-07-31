@@ -1,13 +1,13 @@
 FROM alpine AS build
 
-ARG REDIS_VERSION="5.0.5"
-ARG REDIS_CHECKSUM="2139009799d21d8ff94fc40b7f36ac46699b9e1254086299f8d3b223ca54a375"
+ARG VERSION="5.0.5"
+ARG CHECKSUM="2139009799d21d8ff94fc40b7f36ac46699b9e1254086299f8d3b223ca54a375"
 
-ADD http://download.redis.io/releases/redis-$REDIS_VERSION.tar.gz /tmp/redis.tar.gz
+ADD http://download.redis.io/releases/redis-$VERSION.tar.gz /tmp/redis.tar.gz
 
-RUN [ "$REDIS_CHECKSUM" = "$(sha256sum /tmp/redis.tar.gz | awk '{print $1}')" ] && \
+RUN [ "$CHECKSUM" = "$(sha256sum /tmp/redis.tar.gz | awk '{print $1}')" ] && \
     tar -C /tmp -xf /tmp/redis.tar.gz && \
-    mv /tmp/redis-$REDIS_VERSION /tmp/redis
+    mv /tmp/redis-$VERSION /tmp/redis
 
 RUN apk add gcc make musl-dev linux-headers && \
     cd /tmp/redis && \
