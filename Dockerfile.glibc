@@ -26,7 +26,9 @@ RUN apt update && \
 
 FROM scratch
 
-COPY --from=build --chown=100:100 /tmp/redis/src/redis-server /
+COPY --from=build --chown=100:100 /tmp/redis/src/redis-server \
+                                  /tmp/redis/src/redis-cli \
+                                  /
 COPY --from=build --chown=100:100 /tmp/data /data
 COPY --from=build --chown=100:100 /lib/x86_64-linux-gnu/libc.so.6 \
                                   /lib/x86_64-linux-gnu/libdl.so.2 \

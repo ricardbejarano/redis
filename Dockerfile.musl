@@ -23,7 +23,9 @@ RUN apk add gcc make musl-dev linux-headers && \
 
 FROM scratch
 
-COPY --from=build --chown=100:100 /tmp/redis/src/redis-server /
+COPY --from=build --chown=100:100 /tmp/redis/src/redis-server \
+                                  /tmp/redis/src/redis-cli \
+                                  /
 COPY --from=build --chown=100:100 /tmp/data /data
 COPY --from=build --chown=100:100 /lib/ld-musl-x86_64.so.1 /lib/
 COPY --from=build --chown=100:100 /tmp/group \

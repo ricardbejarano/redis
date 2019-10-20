@@ -64,6 +64,7 @@ Based on the [glibc](https://www.gnu.org/software/libc/) implementation of `libc
 │       └── librt.so.1
 ├── lib64/
 │   └── ld-linux-x86-64.so.2
+├── redis-cli
 └── redis-server
 ```
 
@@ -79,6 +80,7 @@ Based on the [musl](https://www.musl-libc.org/) implementation of `libc`. Dynami
 │   └── passwd
 ├── lib/
 │   └── ld-musl-x86_64.so.1
+├── redis-cli
 └── redis-server
 ```
 
