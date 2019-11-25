@@ -9,20 +9,20 @@
 
 Available on [Docker Hub](https://hub.docker.com) as [`ricardbejarano/redis`](https://hub.docker.com/r/ricardbejarano/redis):
 
-- [`5.0.7-glibc`, `5.0.7`, `glibc`, `master`, `latest` *(Dockerfile.glibc)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.glibc)
-- [`5.0.7-musl`, `musl` *(Dockerfile.musl)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.musl)
+- [`5.0.7-glibc`, `5.0.7`, `glibc`, `master`, `latest` *(Dockerfile.glibc)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.glibc) (about `21.1MB`)
+- [`5.0.7-musl`, `musl` *(Dockerfile.musl)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.musl) (about `17.1MB`)
 
 ### Quay
 
 Available on [Quay](https://quay.io) as:
 
-- [`quay.io/ricardbejarano/redis-glibc`](https://quay.io/repository/ricardbejarano/redis-glibc), tags: [`5.0.7`, `master`, `latest` *(Dockerfile.glibc)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.glibc)
-- [`quay.io/ricardbejarano/redis-musl`](https://quay.io/repository/ricardbejarano/redis-musl), tags: [`5.0.7`, `master`, `latest` *(Dockerfile.musl)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.musl)
+- [`quay.io/ricardbejarano/redis-glibc`](https://quay.io/repository/ricardbejarano/redis-glibc), tags: [`5.0.7`, `master`, `latest` *(Dockerfile.glibc)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.glibc) (about `21.1MB`)
+- [`quay.io/ricardbejarano/redis-musl`](https://quay.io/repository/ricardbejarano/redis-musl), tags: [`5.0.7`, `master`, `latest` *(Dockerfile.musl)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.musl) (about `17.1MB`)
 
 
 ## Features
 
-* Super tiny (`glibc`-based image is about `21.1MB`, `musl`-based image is about `17.1MB`)
+* Super tiny (see [Tags](#tags))
 * Compiled from source (with binary exploit mitigations) during build time
 * Built `FROM scratch`, with zero bloat (see [Filesystem](#filesystem))
 * Reduced attack surface (no shell, no UNIX tools, no package manager...)
