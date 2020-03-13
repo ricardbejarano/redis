@@ -16,7 +16,7 @@ Available on [Docker Hub](https://hub.docker.com) as [`ricardbejarano/redis`](ht
 
 Available on [Quay](https://quay.io) as:
 
-- [`quay.io/ricardbejarano/redis-glibc`](https://quay.io/repository/ricardbejarano/redis-glibc), tags: [`5.0.7`, `master`, `latest` *(Dockerfile.glibc)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.glibc) (about `21.1MB`)
+- [`quay.io/ricardbejarano/redis`](https://quay.io/repository/ricardbejarano/redis), [`quay.io/ricardbejarano/redis-glibc`](https://quay.io/repository/ricardbejarano/redis-glibc), tags: [`5.0.7`, `master`, `latest` *(Dockerfile.glibc)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.glibc) (about `21.1MB`)
 - [`quay.io/ricardbejarano/redis-musl`](https://quay.io/repository/ricardbejarano/redis-musl), tags: [`5.0.7`, `master`, `latest` *(Dockerfile.musl)*](https://github.com/ricardbejarano/redis/blob/master/Dockerfile.musl) (about `17.1MB`)
 
 
