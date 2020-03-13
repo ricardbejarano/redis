@@ -7,39 +7,37 @@ ADD http://download.redis.io/releases/redis-$VERSION.tar.gz /tmp/redis.tar.gz
 
 RUN [ "$CHECKSUM" = "$(sha256sum /tmp/redis.tar.gz | awk '{print $1}')" ] && \
     tar -C /tmp -xf /tmp/redis.tar.gz && \
-    mv /tmp/redis-$VERSION /tmp/redis
-
-RUN apt update && \
+    apt update && \
     apt install -y gcc make && \
-    cd /tmp/redis && \
+    cd /tmp/redis-$VERSION && \
       # see https://github.com/docker-library/redis/blob/6845f6d4940f94c50a9f1bf16e07058d0fe4bc4f/5.0/Dockerfile#L59
       grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 1$' src/server.h; \
       sed -ri 's!^(#define CONFIG_DEFAULT_PROTECTED_MODE) 1$!\1 0!' src/server.h; \
       grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 0$' src/server.h; \
       make \
         CFLAGS="-fstack-protector-all" \
-        LDFLAGS="-z relro -z now" && \
-    echo "nogroup:*:100:nobody" > /tmp/group && \
-    echo "nobody:*:100:100:::" > /tmp/passwd && \
-    mkdir -p /tmp/data
+        LDFLAGS="-z relro -z now"
+
+RUN mkdir -p /rootfs/etc /rootfs/lib/x86_64-linux-gnu/ /rootfs/lib64 /rootfs/data && \
+    cp \
+      /tmp/redis-$VERSION/src/redis-server \
+      /tmp/redis-$VERSION/src/redis-cli \
+      /rootfs/ && \
+    cp \
+      /lib/x86_64-linux-gnu/libc.so.6 \
+      /lib/x86_64-linux-gnu/libdl.so.2 \
+      /lib/x86_64-linux-gnu/libm.so.6 \
+      /lib/x86_64-linux-gnu/librt.so.1 \
+      /lib/x86_64-linux-gnu/libpthread.so.0 \
+      /rootfs/lib/x86_64-linux-gnu/ && \
+    cp /lib64/ld-linux-x86-64.so.2 /rootfs/lib64/ && \
+    echo "nogroup:*:100:nobody" > /rootfs/etc/group && \
+    echo "nobody:*:100:100:::" > /rootfs/etc/passwd
 
 
 FROM scratch
 
-COPY --from=build --chown=100:100 /tmp/redis/src/redis-server \
-                                  /tmp/redis/src/redis-cli \
-                                  /
-COPY --from=build --chown=100:100 /tmp/data /data
-COPY --from=build --chown=100:100 /lib/x86_64-linux-gnu/libc.so.6 \
-                                  /lib/x86_64-linux-gnu/libdl.so.2 \
-                                  /lib/x86_64-linux-gnu/libm.so.6 \
-                                  /lib/x86_64-linux-gnu/librt.so.1 \
-                                  /lib/x86_64-linux-gnu/libpthread.so.0 \
-                                  /lib/x86_64-linux-gnu/
-COPY --from=build --chown=100:100 /lib64/ld-linux-x86-64.so.2 /lib64/
-COPY --from=build --chown=100:100 /tmp/group \
-                                  /tmp/passwd \
-                                  /etc/
+COPY --from=build --chown=100:100 /rootfs /
 
 USER 100:100
 WORKDIR /data

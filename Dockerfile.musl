@@ -7,30 +7,27 @@ ADD http://download.redis.io/releases/redis-$VERSION.tar.gz /tmp/redis.tar.gz
 
 RUN [ "$CHECKSUM" = "$(sha256sum /tmp/redis.tar.gz | awk '{print $1}')" ] && \
     tar -C /tmp -xf /tmp/redis.tar.gz && \
-    mv /tmp/redis-$VERSION /tmp/redis
-
-RUN apk add gcc make musl-dev linux-headers && \
-    cd /tmp/redis && \
+    apk add gcc make musl-dev linux-headers && \
+    cd /tmp/redis-$VERSION && \
       # see https://github.com/docker-library/redis/blob/6845f6d4940f94c50a9f1bf16e07058d0fe4bc4f/5.0/Dockerfile#L59
       grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 1$' src/server.h; \
       sed -ri 's!^(#define CONFIG_DEFAULT_PROTECTED_MODE) 1$!\1 0!' src/server.h; \
       grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 0$' src/server.h; \
-      make && \
-    echo "nogroup:*:100:nobody" > /tmp/group && \
-    echo "nobody:*:100:100:::" > /tmp/passwd && \
-    mkdir -p /tmp/data
+      make
+
+RUN mkdir -p /rootfs/etc /rootfs/lib /rootfs/data && \
+    cp \
+      /tmp/redis-$VERSION/src/redis-server \
+      /tmp/redis-$VERSION/src/redis-cli \
+      /rootfs/ && \
+    cp /lib/ld-musl-x86_64.so.1 /rootfs/lib/ && \
+    echo "nogroup:*:100:nobody" > /rootfs/etc/group && \
+    echo "nobody:*:100:100:::" > /rootfs/etc/passwd
 
 
 FROM scratch
 
-COPY --from=build --chown=100:100 /tmp/redis/src/redis-server \
-                                  /tmp/redis/src/redis-cli \
-                                  /
-COPY --from=build --chown=100:100 /tmp/data /data
-COPY --from=build --chown=100:100 /lib/ld-musl-x86_64.so.1 /lib/
-COPY --from=build --chown=100:100 /tmp/group \
-                                  /tmp/passwd \
-                                  /etc/
+COPY --from=build --chown=100:100 /rootfs /
 
 USER 100:100
 WORKDIR /data
