@@ -18,7 +18,7 @@ RUN [ "$CHECKSUM" = "$(sha256sum /tmp/redis.tar.gz | awk '{print $1}')" ] && \
         CFLAGS="-fstack-protector-all" \
         LDFLAGS="-z relro -z now"
 
-RUN mkdir -p /rootfs/etc /rootfs/lib/x86_64-linux-gnu/ /rootfs/lib64 /rootfs/data && \
+RUN mkdir -p /rootfs/etc /rootfs/lib/x86_64-linux-gnu /rootfs/lib64 /rootfs/data && \
     cp \
       /tmp/redis-$VERSION/src/redis-server \
       /tmp/redis-$VERSION/src/redis-cli \
