@@ -1,7 +1,7 @@
 FROM debian:10 AS build
 
-ARG VERSION="6.0.1"
-ARG CHECKSUM="b8756e430479edc162ba9c44dc89ac394316cd482f2dc6b91bcd5fe12593f273"
+ARG VERSION="6.0.2"
+ARG CHECKSUM="9c37cd4228a57e82e7037094751c63349302b0b86c5e30b778a63a802dfd0109"
 
 ADD http://download.redis.io/releases/redis-$VERSION.tar.gz /tmp/redis.tar.gz
 
