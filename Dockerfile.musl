@@ -1,7 +1,7 @@
 FROM alpine:3 AS build
 
-ARG VERSION="6.0.2"
-ARG CHECKSUM="9c37cd4228a57e82e7037094751c63349302b0b86c5e30b778a63a802dfd0109"
+ARG VERSION="6.0.3"
+ARG CHECKSUM="bca46dce81fe92f7b2de4cf8ae41fbc4b94fbd5674def7f12c87e7f9165cbb3a"
 
 ADD http://download.redis.io/releases/redis-$VERSION.tar.gz /tmp/redis.tar.gz
 
