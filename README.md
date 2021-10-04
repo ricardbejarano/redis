@@ -9,13 +9,13 @@
 
 Available on Docker Hub as [`docker.io/ricardbejarano/redis`](https://hub.docker.com/r/ricardbejarano/redis):
 
-- [`6.0.16`, `latest` *(Dockerfile)*](Dockerfile)
+- [`6.2.6`, `latest` *(Dockerfile)*](Dockerfile)
 
 ### RedHat Quay
 
 Available on RedHat Quay as [`quay.io/ricardbejarano/redis`](https://quay.io/repository/ricardbejarano/redis):
 
-- [`6.0.16`, `latest` *(Dockerfile)*](Dockerfile)
+- [`6.2.6`, `latest` *(Dockerfile)*](Dockerfile)
 
 
 ## Features
