@@ -20,13 +20,13 @@
 
 Available on Docker Hub as [`docker.io/ricardbejarano/redis`](https://hub.docker.com/r/ricardbejarano/redis):
 
-- [`7.0.0`, `latest` *(Dockerfile)*](Dockerfile)
+- [`7.0.1`, `latest` *(Dockerfile)*](Dockerfile)
 
 ### RedHat Quay
 
 Available on RedHat Quay as [`quay.io/ricardbejarano/redis`](https://quay.io/repository/ricardbejarano/redis):
 
-- [`7.0.0`, `latest` *(Dockerfile)*](Dockerfile)
+- [`7.0.1`, `latest` *(Dockerfile)*](Dockerfile)
 
 
 ## Configuration
